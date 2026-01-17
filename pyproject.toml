@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resume-analyzer"
+version = "0.1.0"
+description = "Professional Resume Analyzer core"
+requires-python = ">=3.12"
+dependencies = [
+  # Parsing / ML
+  "pypdf",
+  "python-docx",
+  "scikit-learn",
+  "numpy",
+
+  # API runtime
+  "fastapi",
+  "uvicorn[standard]",
+  "python-multipart",
+  "pydantic-settings",
+  "httpx",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

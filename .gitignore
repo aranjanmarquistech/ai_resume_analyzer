@@ -1,0 +1,17 @@
+﻿# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS junk
+.DS_Store
+Thumbs.db
+.env
+.env.*
+# Local data / outputs
+data/
+uploads/
+*.log
+*.csv
+!data/skills_taxonomy.json

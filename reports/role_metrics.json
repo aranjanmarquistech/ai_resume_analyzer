@@ -1,0 +1,63 @@
+{
+  "timestamp": "20260115_1732",
+  "dataset": "training\\data\\role_dataset.csv",
+  "n_samples": 250,
+  "n_classes": 5,
+  "test_size": 0.25,
+  "stratified": true,
+  "model_path": "models\\role_pipeline_v20260115_1732.joblib",
+  "latest_model_pointer": "models\\latest_role_model.txt",
+  "macro_f1": 1.0,
+  "classes": [
+    "android_developer",
+    "backend_java",
+    "flutter_developer",
+    "frontend_react",
+    "python_ml"
+  ],
+  "classification_report": {
+    "android_developer": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 13.0
+    },
+    "backend_java": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 12.0
+    },
+    "flutter_developer": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 13.0
+    },
+    "frontend_react": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 13.0
+    },
+    "python_ml": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 12.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 63.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 63.0
+    }
+  }
+}
