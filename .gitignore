@@ -10,8 +10,11 @@ Thumbs.db
 .env
 .env.*
 # Local data / outputs
-data/
+# Local data / outputs
+data/*
+!data/
+!data/skills_taxonomy.json
+
 uploads/
 *.log
 *.csv
-!data/skills_taxonomy.json

@@ -1,0 +1,372 @@
+{
+  "android": [
+    "android",
+    "android sdk",
+    "android studio",
+    "android development"
+  ],
+  "kotlin": [
+    "kotlin"
+  ],
+  "java": [
+    "java"
+  ],
+  "git": [
+    "git",
+    "github",
+    "gitlab"
+  ],
+  "rest api": [
+    "rest api",
+    "restful",
+    "rest",
+    "apis",
+    "api integration"
+  ],
+  "firebase": [
+    "firebase",
+    "fcm",
+    "firebase cloud messaging",
+    "firestore",
+    "firebase auth"
+  ],
+  "jetpack": [
+    "jetpack",
+    "android jetpack"
+  ],
+  "jetpack components": [
+    "jetpack components",
+    "jetpack component",
+    "viewmodel",
+    "live data",
+    "livedata",
+    "navigation component",
+    "workmanager",
+    "paging",
+    "databinding",
+    "data binding",
+    "view binding"
+  ],
+  "room": [
+    "room",
+    "room db",
+    "room database"
+  ],
+  "mvvm": [
+    "mvvm"
+  ],
+  "mvp": [
+    "mvp"
+  ],
+  "clean architecture": [
+    "clean architecture",
+    "clean arch"
+  ],
+  "hilt": [
+    "hilt",
+    "dagger hilt"
+  ],
+  "dagger": [
+    "dagger",
+    "dagger2",
+    "dagger 2"
+  ],
+  "retrofit": [
+    "retrofit"
+  ],
+  "okhttp": [
+    "okhttp",
+    "ok http"
+  ],
+  "jetpack compose": [
+    "jetpack compose",
+    "compose"
+  ],
+  "coroutines": [
+    "coroutines",
+    "kotlin coroutines"
+  ],
+  "unit testing": [
+    "unit testing",
+    "junit",
+    "junit4",
+    "junit 4"
+  ],
+  "espresso": [
+    "espresso"
+  ],
+  "mockito": [
+    "mockito"
+  ],
+  "ci/cd": [
+    "ci/cd",
+    "cicd",
+    "github actions",
+    "jenkins"
+  ],
+  "gradle": [
+    "gradle"
+  ],
+  "ui/ux": [
+    "ui/ux",
+    "ui ux",
+    "ux",
+    "user experience",
+    "user interface"
+  ],
+  "material design": [
+    "material design",
+    "material ui"
+  ],
+  "google play store": [
+    "google play",
+    "play store",
+    "google play store",
+    "published app",
+    "published on play store"
+  ],
+  "python": [
+    "python",
+    "py"
+  ],
+  "flutter": [
+    "flutter"
+  ],
+  "dart": [
+    "dart"
+  ],
+  "c": [
+    "c"
+  ],
+  "c++": [
+    "c++",
+    "cpp"
+  ],
+  "c#": [
+    "c#",
+    "c sharp"
+  ],
+  "go": [
+    "go",
+    "golang"
+  ],
+  "javascript": [
+    "javascript",
+    "js",
+    "node",
+    "nodejs",
+    "node.js"
+  ],
+  "typescript": [
+    "typescript",
+    "ts"
+  ],
+  "sql": [
+    "sql"
+  ],
+  "nosql": [
+    "nosql"
+  ],
+  "linux": [
+    "linux",
+    "ubuntu",
+    "debian",
+    "centos"
+  ],
+  "bash": [
+    "bash",
+    "shell scripting",
+    "shell"
+  ],
+  "django": [
+    "django"
+  ],
+  "flask": [
+    "flask"
+  ],
+  "fastapi": [
+    "fastapi"
+  ],
+  "spring boot": [
+    "spring boot",
+    "springboot"
+  ],
+  "react": [
+    "react",
+    "reactjs",
+    "react.js"
+  ],
+  "node.js": [
+    "node.js",
+    "nodejs",
+    "node"
+  ],
+  "aws": [
+    "aws",
+    "amazon web services",
+    "ec2",
+    "s3",
+    "lambda",
+    "cloudwatch"
+  ],
+  "gcp": [
+    "gcp",
+    "google cloud",
+    "google cloud platform",
+    "bigquery"
+  ],
+  "azure": [
+    "azure",
+    "microsoft azure"
+  ],
+  "docker": [
+    "docker",
+    "container",
+    "containers"
+  ],
+  "kubernetes": [
+    "kubernetes",
+    "k8s"
+  ],
+  "mysql": [
+    "mysql"
+  ],
+  "postgresql": [
+    "postgresql",
+    "postgres",
+    "postgre"
+  ],
+  "sqlite": [
+    "sqlite"
+  ],
+  "redis": [
+    "redis"
+  ],
+  "elasticsearch": [
+    "elasticsearch",
+    "elastic search"
+  ],
+  "kafka": [
+    "kafka"
+  ],
+  "data structures": [
+    "data structures",
+    "dsa"
+  ],
+  "algorithms": [
+    "algorithms"
+  ],
+  "ai": [
+    "ai",
+    "artificial intelligence"
+  ],
+  "machine learning": [
+    "machine learning",
+    "ml"
+  ],
+  "deep learning": [
+    "deep learning",
+    "dl"
+  ],
+  "nlp": [
+    "nlp",
+    "natural language processing"
+  ],
+  "computer vision": [
+    "computer vision",
+    "cv"
+  ],
+  "numpy": [
+    "numpy"
+  ],
+  "pandas": [
+    "pandas"
+  ],
+  "matplotlib": [
+    "matplotlib"
+  ],
+  "scikit-learn": [
+    "scikit-learn",
+    "sklearn"
+  ],
+  "tensorflow": [
+    "tensorflow"
+  ],
+  "keras": [
+    "keras"
+  ],
+  "pytorch": [
+    "pytorch",
+    "torch"
+  ],
+  "opencv": [
+    "opencv",
+    "open cv"
+  ],
+  "spacy": [
+    "spacy"
+  ],
+  "nltk": [
+    "nltk"
+  ],
+  "llm": [
+    "llm",
+    "large language model",
+    "large language models"
+  ],
+  "prompt engineering": [
+    "prompt engineering",
+    "prompting"
+  ],
+  "rag": [
+    "rag",
+    "retrieval augmented generation",
+    "retrieval-augmented generation"
+  ],
+  "langchain": [
+    "langchain"
+  ],
+  "vector database": [
+    "vector database",
+    "vector db",
+    "vectordb"
+  ],
+  "faiss": [
+    "faiss"
+  ],
+  "pinecone": [
+    "pinecone"
+  ],
+  "chromadb": [
+    "chromadb",
+    "chroma"
+  ],
+  "pytest": [
+    "pytest"
+  ],
+  "unit testing": [
+    "unit testing",
+    "unit tests",
+    "junit",
+    "junit4",
+    "junit 4"
+  ],
+  "api testing": [
+    "api testing",
+    "postman"
+  ],
+  "ci/cd": [
+    "ci/cd",
+    "cicd",
+    "github actions",
+    "jenkins",
+    "gitlab ci"
+  ],
+  "agile": [
+    "agile",
+    "scrum"
+  ],
+  "jira": [
+    "jira"
+  ]
+}
