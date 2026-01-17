@@ -7,13 +7,12 @@ from fastapi import Depends, FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 
-
 from .auth import require_api_key
 from .config import settings
 from .deps import ALLOWED_JD_EXT, ALLOWED_RESUME_EXT, validate_upload
 from .schemas import AnalyzeResponse, ContactOut, MatchOut, RolePredictionOut
 
-# ✅ Your existing “already working” pipeline functions
+# Existing pipeline functions
 from resume_analyzer.parsing.resume import extract_resume_text
 from resume_analyzer.parsing.contact import extract_contact_info
 from resume_analyzer.skills.extract import extract_skills
@@ -21,10 +20,14 @@ from resume_analyzer.scoring.match import match_resume_to_jd
 from resume_analyzer.ml.role_predictor import RolePredictor
 
 
+# -------------------------------------------------------------------
+# Helpers
+# -------------------------------------------------------------------
+
 def _bytes_to_tempfile(data: bytes, filename: str) -> Path:
     """
-    Writes bytes to a temp file with the same extension as filename
-    so your existing extract_resume_text(path) can be reused.
+    Write bytes to a temp file so existing extract_resume_text(path)
+    can be reused without modification.
     """
     suffix = Path(filename).suffix or ".bin"
     tmp = tempfile.NamedTemporaryFile(delete=False, suffix=suffix)
@@ -33,17 +36,19 @@ def _bytes_to_tempfile(data: bytes, filename: str) -> Path:
         tmp.flush()
         return Path(tmp.name)
     finally:
-        (tmp.close()
+        tmp.close()
 
-         @app.get("/favicon.ico", include_in_schema=False))
-        def favicon():
-            return Response(status_code=204)
 
+# -------------------------------------------------------------------
+# App factory
+# -------------------------------------------------------------------
 
 def create_app() -> FastAPI:
     app = FastAPI(title="Resume Analyzer", version=settings.API_VERSION)
 
+    # -----------------------------
     # CORS
+    # -----------------------------
     origins = [o.strip() for o in settings.CORS_ORIGINS.split(",") if o.strip()]
     allow_all = "*" in origins
 
@@ -54,6 +59,13 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    # -----------------------------
+    # Utility routes
+    # -----------------------------
+    @app.get("/favicon.ico", include_in_schema=False)
+    def favicon():
+        return Response(status_code=204)
 
     @app.get("/")
     def root():
@@ -69,6 +81,9 @@ def create_app() -> FastAPI:
     def health():
         return {"status": "ok", "version": settings.API_VERSION}
 
+    # -----------------------------
+    # Analyze endpoint
+    # -----------------------------
     @app.post(
         "/analyze",
         response_model=AnalyzeResponse,
@@ -84,15 +99,22 @@ def create_app() -> FastAPI:
         jd_text: str | None = Form(None),
         _: str = Depends(require_api_key),
     ) -> AnalyzeResponse:
-        # 1) Validate + read files
-        resume_bytes = await validate_upload(resume, ALLOWED_RESUME_EXT, "resume")
+
+        # 1) Validate uploads
+        resume_bytes = await validate_upload(
+            resume, ALLOWED_RESUME_EXT, "resume"
+        )
 
         jd_bytes: bytes | None = None
         if jd_file is not None:
-            jd_bytes = await validate_upload(jd_file, ALLOWED_JD_EXT, "jd_file")
+            jd_bytes = await validate_upload(
+                jd_file, ALLOWED_JD_EXT, "jd_file"
+            )
 
-        # 2) Resume bytes -> text (reuse your existing extractor)
-        resume_tmp = _bytes_to_tempfile(resume_bytes, resume.filename or "resume.pdf")
+        # 2) Resume → text
+        resume_tmp = _bytes_to_tempfile(
+            resume_bytes, resume.filename or "resume.pdf"
+        )
         try:
             resume_text = extract_resume_text(str(resume_tmp))
         finally:
@@ -105,24 +127,28 @@ def create_app() -> FastAPI:
         # 4) Role prediction (optional)
         role_prediction: list[RolePredictionOut] = []
         role_model: str | None = None
+
         try:
             predictor = RolePredictor("models/role_pipeline.joblib")
-            pred = predictor.predict(resume_text)  # your current class supports this
+            pred = predictor.predict(resume_text)
             role_prediction = [
-                RolePredictionOut(label=pred.label, confidence=float(pred.confidence))
+                RolePredictionOut(
+                    label=pred.label,
+                    confidence=float(pred.confidence),
+                )
             ]
             role_model = "models/role_pipeline.joblib"
         except Exception:
             role_prediction = []
             role_model = None
 
-        # 5) JD final text (from jd_text or jd_file)
+        # 5) JD final text
         jd_final_text: str | None = None
 
         if jd_text and jd_text.strip():
             jd_final_text = jd_text.strip()
+
         elif jd_bytes is not None and jd_file is not None:
-            # If JD is txt, decode. If pdf/docx, parse like resume.
             ext = (Path(jd_file.filename).suffix or "").lower()
             if ext == ".txt":
                 jd_final_text = jd_bytes.decode("utf-8", errors="ignore")
@@ -133,7 +159,7 @@ def create_app() -> FastAPI:
                 finally:
                     jd_tmp.unlink(missing_ok=True)
 
-        # 6) Match (only if JD exists)
+        # 6) Match resume ↔ JD
         match_out: MatchOut | None = None
         if jd_final_text and jd_final_text.strip():
             m = match_resume_to_jd(resume_text, jd_final_text)
@@ -147,7 +173,7 @@ def create_app() -> FastAPI:
                 missing_skills=list(m.missing_skills),
             )
 
-        # 7) Return typed DTO response
+        # 7) Response DTO
         return AnalyzeResponse(
             resume_filename=resume.filename,
             contact=ContactOut(
@@ -165,5 +191,9 @@ def create_app() -> FastAPI:
 
     return app
 
+
+# -------------------------------------------------------------------
+# ASGI entrypoint
+# -------------------------------------------------------------------
 
 app = create_app()
